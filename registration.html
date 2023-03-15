@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Registration Form</title>
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name">
+        </div>
+      
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="email">
+          <span id="email_error"></span>
+        </div>
+      
+        <div class="form-group">
+          <label for="phone">Phone number:</label>
+          <input type="tel" id="phone" name="phone">
+          <span id="phone_error"></span>
+        </div>
+      
+        <div class="form-group">
+          <label for="image">Image:</label>
+          <input type="file" id="image" name="image">
+        </div>
+      
+        <button type="submit" id="submit" name="submit">Submit</button>
+    </form>
+      
+    <script>
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+
+            var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            var phone_regex = /^\d{10}$/;
+
+            var email_valid = email_regex.test(email);
+            var phone_valid = phone_regex.test(phone);
+
+            if (!email_valid) {
+                document.getElementById("email_error").innerHTML = "Please enter a valid email address";
+            } 
+            else {
+                document.getElementById("email_error").innerHTML = "";
+            }
+
+            if (!phone_valid) 
+            {
+                document.getElementById("phone_error").innerHTML = "Please enter a valid 10-digit phone number";
+            } else {
+                document.getElementById("phone_error").innerHTML = "";
+            }
+
+            return email_valid && phone_valid;
+        }
+        
+        console.log(email);
+        
+        var submit = document.getElementById('submit');
+        submit.addEventListener('click', formSubmit);
+
+        function formSubmit(){
+            var formData = new FormData();
+
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('image', document.getElementById('image').files[0]);
+
+            var xml = new XMLHttpRequest();
+
+            //Sending input data to the server
+            xml.open('POST', 'superglobals.php', true);
+            xml.onreadystatechange = function(){
+                if(xml.readyState == 4 && xml.status == 200){
+                    document.getElementById('name').value="";
+                    document.getElementById('email').value="";
+                    document.getElementById('phone').value="";
+                    document.getElementById('image').value="";  
+                }
+            };
+        xml.send(formData);
+        }
+    </script>
+</body>
+</html>
