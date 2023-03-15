@@ -85,14 +85,11 @@ document.getElementById("registration-form").addEventListener("submit", function
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "superglobals.php", true);
         
-
-        // xhr.setRequestHeader("Content-type :application/json");
         
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
 
-                // document.getElementById("message").innerHTML = xhr.responseText;
                 document.getElementById("name").value = "";
                 document.getElementById("email").value = "";
                 document.getElementById("phone").value = "";
