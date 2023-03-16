@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,100 +8,100 @@
     <link rel="stylesheet" href="style.css">
     <title>Registration Form</title>
     <style>
-        .error{
+        .error {
             color: red;
         }
     </style>
 </head>
+
 <body>
     <form id="registration-form" method="POST" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
         </div>
-      
+
         <div class="form-group">
-          <label for="email">*Email:</label>
-          <input type="text" id="email" name="email">
-          <span id="email_error" class="error"></span>
+            <label for="email">*Email:</label>
+            <input type="text" id="email" name="email">
+            <span id="email_error" class="error"></span>
         </div>
-      
+
         <div class="form-group">
-          <label for="phone">*Phone number:</label>
-          <input type="tel" id="phone" name="phone">
-          <span id="phone_error" class="error"></span>
+            <label for="phone">*Phone number:</label>
+            <input type="tel" id="phone" name="phone">
+            <span id="phone_error" class="error"></span>
         </div>
-      
+
         <div class="form-group">
-          <label for="image">Image:</label>
-          <input type="file" id="image" name="image" required>
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" required>
         </div>
-      
+
         <button type="submit" id="submit" name="submit">Submit</button>
     </form>
     <div id="message"></div>
-      
+
     <script>
         //email address
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
-}
-//mobile
-function validateMobile(phone) {
-    const re = /^\d{10}$/;
-    return re.test(phone);
-}
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+        //mobile
+        function validateMobile(phone) {
+            const re = /^\d{10}$/;
+            return re.test(phone);
+        }
 
-document.getElementById("registration-form").addEventListener("submit", function(event) {
-    event.preventDefault(); 
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const image = document.getElementById("image").files[0];
-    const emailError = document.getElementById("email_error");
-    const phoneError = document.getElementById("phone_error");
-    let isValid = true;
+        document.getElementById("registration-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const name = document.querySelector("#name").value;
+            const email = document.querySelector("#email").value;
+            const phone = document.querySelector("#phone").value;
+            const image = document.querySelector("#image").files[0];
+            const emailError = document.querySelector("#email_error");
+            const phoneError = document.querySelector("#phone_error");
+            let isValid = true;
 
-    if (!validateEmail(email)) {
-        emailError.innerHTML = "Invalid email address";
-        isValid = false;
-    } else {
-        emailError.innerHTML = "";
-    }
-
-    if (!validateMobile(phone)) {
-        phoneError.innerHTML = "Invalid mobile number check whether 10 number exist";
-        isValid = false;
-    } else {
-        phoneError.innerHTML = "";
-    }
-    if (isValid) {
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("email", email);
-        formData.append("phone", phone);
-        formData.append('image', image)
-
-        
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "superglobals.php", true); //initialize a new AJAX request
-        
-        
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                document.getElementById('message').innerHTML = xhr.responseText;
-                document.getElementById("name").value = "";
-                document.getElementById("email").value = "";
-                document.getElementById("phone").value = "";
-                document.getElementById("image").value = "";
+            if (!validateEmail(email)) {
+                emailError.innerHTML = "Invalid email address";
+                isValid = false;
+            } else {
+                emailError.innerHTML = "";
             }
-        };
-        
-        xhr.send(formData);
-        
-    }
-});
+
+            if (!validateMobile(phone)) {
+                phoneError.innerHTML = "Invalid mobile number check whether 10 number exist";
+                isValid = false;
+            } else {
+                phoneError.innerHTML = "";
+            }
+            if (isValid) {
+                const formData = new FormData(); //formData is a built in javaScript Object
+                formData.append("name", name); // that construct a set of keyvalue pairs
+                formData.append("email", email);// representing form fields and their values
+                formData.append("phone", phone);
+                formData.append('image', image);
+
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "superglobals.php", true); //initialize a new AJAX request
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        document.querySelector('#message').innerHTML = xhr.responseText;
+                        document.querySelector("#name").value = "";
+                        document.querySelector("#email").value = "";
+                        document.querySelector("#phone").value = "";
+                        document.querySelector("#image").value = "";
+                    }
+                };
+
+                xhr.send(formData);
+
+            }
+        });
     </script>
 </body>
 </html>

@@ -46,5 +46,35 @@
         "email": "vishnu@gmail.com",
         "phone": "7410201564",
         "image": "mikey.jpg"
+    },
+    {
+        "name": "Rishan",
+        "email": "rishan@gmail.com",
+        "phone": "7850123650",
+        "image": "bird.webp"
+    },
+    {
+        "name": "John",
+        "email": "john@gmail.com",
+        "phone": "9985201017",
+        "image": "ele.webp"
+    },
+    {
+        "name": "Seetha",
+        "email": "seetha@gmail.com",
+        "phone": "7410258471",
+        "image": "panda.jpg"
+    },
+    {
+        "name": "Sruthi",
+        "email": "sruthi@gmail.com",
+        "phone": "7412658741",
+        "image": "panda.jpg"
+    },
+    {
+        "name": "Liya",
+        "email": "liya@gmail.com",
+        "phone": "7410203252",
+        "image": "ele.webp"
     }
 ]
