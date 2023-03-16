@@ -24,7 +24,8 @@ function appendData(){
         file_put_contents('data.json', $data);
 
         echo 'Registration successful';
-    } else {
+    } 
+    else {
         echo 'Registration Unsuccessful';
     }
 

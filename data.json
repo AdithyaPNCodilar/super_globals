@@ -34,5 +34,17 @@
         "email": "saranya@gmail.com",
         "phone": "8541203698",
         "image": "panda.jpg"
+    },
+    {
+        "name": "Chinmay",
+        "email": "chinmay@gmail.com",
+        "phone": "7740123620",
+        "image": "ele.webp"
+    },
+    {
+        "name": "Vishnu",
+        "email": "vishnu@gmail.com",
+        "phone": "7410201564",
+        "image": "mikey.jpg"
     }
 ]

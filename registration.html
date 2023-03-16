@@ -38,6 +38,7 @@
       
         <button type="submit" id="submit" name="submit">Submit</button>
     </form>
+    <div id="message"></div>
       
     <script>
         //email address
@@ -83,13 +84,12 @@ document.getElementById("registration-form").addEventListener("submit", function
 
         
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", "superglobals.php", true);
+        xhr.open("POST", "superglobals.php", true); //initialize a new AJAX request
         
         
-
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-
+                document.getElementById('message').innerHTML = xhr.responseText;
                 document.getElementById("name").value = "";
                 document.getElementById("email").value = "";
                 document.getElementById("phone").value = "";
